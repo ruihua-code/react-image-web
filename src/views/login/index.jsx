@@ -59,13 +59,19 @@ function LoginPage() {
           <Form.Item
             name="phone"
             rules={[{ required: true, message: '请输入账号' }]}>
-            <Input allowClear prefix={<UserOutlined />} placeholder="账号" />
+            <Input
+              maxLength="11"
+              allowClear
+              prefix={<UserOutlined />}
+              placeholder="账号"
+            />
           </Form.Item>
 
           <Form.Item
             name="password"
             rules={[{ required: true, message: '请输入密码' }]}>
             <Input.Password
+              maxLength="20"
               allowClear
               prefix={<LockOutlined />}
               placeholder="密码"
@@ -75,6 +81,7 @@ function LoginPage() {
             name="code"
             rules={[{ required: true, message: '请输入验证码' }]}>
             <Input
+              maxLength="4"
               allowClear
               prefix={<CheckSquareOutlined />}
               addonAfter={codeImageHtml}
