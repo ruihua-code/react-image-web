@@ -5,16 +5,42 @@
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1,user-scalable=no"
-    />
+      content="width=device-width, initial-scale=1,user-scalable=no" />
     <meta name="theme-color" content="#000000" />
     <meta name="description" content="瑞华摄影" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <script src="./js/lottie-player.js"></script>
     <title>react web</title>
+    <style>
+      #lottie-player-load {
+        position: fixed;
+        top: calc(50% - 160px);
+        left: calc(50% - 160px);
+        width: 320px;
+        height: 320px;
+        opacity: 1;
+        transition: opacity 0.5s;
+      }
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <lottie-player
+      id="lottie-player-load"
+      autoplay
+      loop
+      mode="normal"
+      src="./animate/loading.json"></lottie-player>
+    <script>
+      window.onload = () => {
+        let loading = document.getElementById('lottie-player-load');
+        loading.style.opacity = 0;
+        setTimeout(() => {
+          document.body.removeChild(loading);
+        }, 600);
+      };
+    </script>
   </body>
 </html>
