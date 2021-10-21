@@ -1,14 +1,18 @@
-import { useState, useEffect } from "react";
-import { Form, Input, Button, Divider } from "antd";
-import { UserOutlined, LockOutlined } from "@ant-design/icons";
-import LoginApi from "../../api/login";
-import { NavLink } from "react-router-dom";
-import "./index.scss";
+import { useState, useEffect } from 'react';
+import { Form, Input, Button, Divider } from 'antd';
+import {
+  UserOutlined,
+  LockOutlined,
+  CheckSquareOutlined,
+} from '@ant-design/icons';
+import LoginApi from '../../api/login';
+import { NavLink } from 'react-router-dom';
+import './index.scss';
 function LoginPage() {
   const [codeImage, setCode] = useState(null);
   const [uuid, setUuid] = useState(null);
   const onFinish = (values) => {
-    console.log("Success:", values);
+    console.log('Success:', values);
     LoginApi.login({
       code: values.code,
       phone: values.phone,
@@ -18,7 +22,7 @@ function LoginPage() {
   };
 
   const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
+    console.log('Failed:', errorInfo);
   };
 
   const codeImageHtml = (
@@ -26,23 +30,14 @@ function LoginPage() {
       onClick={() => setImageCode()}
       className="img-code"
       src={codeImage}
-      alt="验证码"
-    ></img>
+      alt="验证码"></img>
   );
 
   const setImageCode = () => {
     LoginApi.getCode().then((res) => {
-      setCode("data:image/gif;base64," + res.img);
+      setCode('data:image/gif;base64,' + res.img);
       setUuid(res.uuid);
     });
-  };
-  const tailFormItemLayout = {
-    wrapperCol: {
-      sm: {
-        span: 15,
-        offset: 8,
-      },
-    },
   };
   useEffect(() => {
     setImageCode();
@@ -58,46 +53,50 @@ function LoginPage() {
         <Form
           className="formLogin"
           name="basic"
-          labelCol={{ span: 4 }}
-          wrapperCol={{ span: 18 }}
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
-          autoComplete="off"
-        >
+          autoComplete="off">
           <Form.Item
-            label="账号"
             name="phone"
-            rules={[{ required: true, message: "请输入账号" }]}
-          >
-            <Input allowClear prefix={<UserOutlined />} placeholder="账号" />
+            rules={[{ required: true, message: '请输入账号' }]}>
+            <Input
+              maxLength="11"
+              allowClear
+              prefix={<UserOutlined />}
+              placeholder="账号"
+            />
           </Form.Item>
 
           <Form.Item
-            label="密码"
             name="password"
-            rules={[{ required: true, message: "请输入密码" }]}
-          >
+            rules={[{ required: true, message: '请输入密码' }]}>
             <Input.Password
+              maxLength="20"
               allowClear
               prefix={<LockOutlined />}
               placeholder="密码"
             />
           </Form.Item>
           <Form.Item
-            {...tailFormItemLayout}
             name="code"
-            rules={[{ required: true, message: "请输入验证码" }]}
-          >
-            <Input allowClear addonAfter={codeImageHtml} placeholder="验证码" />
+            rules={[{ required: true, message: '请输入验证码' }]}>
+            <Input
+              maxLength="4"
+              allowClear
+              prefix={<CheckSquareOutlined />}
+              addonAfter={codeImageHtml}
+              placeholder="验证码"
+            />
           </Form.Item>
-          <Form.Item>
-            <NavLink to="/registry">注册</NavLink>
-          </Form.Item>
+
           <Form.Item className="btn-login">
-            <Button type="primary" shape="round" htmlType="submit">
+            <Button type="primary" htmlType="submit">
               登录
             </Button>
           </Form.Item>
+          <div className="registry">
+            <span>还没账号</span> <NavLink to="/registry">注册</NavLink>
+          </div>
         </Form>
       </div>
     </div>
