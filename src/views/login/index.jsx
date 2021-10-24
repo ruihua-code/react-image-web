@@ -44,7 +44,7 @@ function LoginPage() {
   }, []);
   return (
     <div>
-      <div className="bg"></div>
+      <div styleName="bg"></div>
       <div className="login">
         <h2 className="title">
           <Divider>小明跑腿 &bull; 后台管理系统</Divider>
@@ -96,6 +96,7 @@ function LoginPage() {
           </Form.Item>
           <div className="registry">
             <span>还没账号</span> <NavLink to="/registry">注册</NavLink>
+            <NavLink to="about">关于</NavLink>
           </div>
         </Form>
       </div>
