@@ -1,0 +1,15 @@
+.about {
+  border: 1px solid;
+}
+
+.test {
+  border: 1px solid;
+  height: 200px;
+}
+:global {
+  .test {
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+  }
+}

@@ -44,7 +44,7 @@ function RegistryPage() {
   }, []);
   return (
     <div>
-      <div className="bg"></div>
+      <div className ="bg"></div>
       <div className="login">
         <h2 className="title">
           <Divider>小明跑腿 &bull; 后台管理系统</Divider>
